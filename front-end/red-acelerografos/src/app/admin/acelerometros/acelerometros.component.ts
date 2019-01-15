@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatSort, MatTableDataSource,MatTable} from '@angular/material';
-import { Acelerografo, Sensor } from '../../clases/acelerografo';
+import { Acelerografo, Sensor,Datalogger } from '../../clases/acelerografo';
 import { Observable } from 'rxjs';
 import {MatDialog} from '@angular/material';
 import { AddSensorComponent } from '../../admin/dialog/add-sensor/add-sensor.component';
@@ -18,11 +18,14 @@ export class AcelerometrosComponent implements OnInit {
    @ViewChild(MatSort) sort: MatSort;
   displayedColumns= ['nombre', 'ubicacion', 'latitud','longitud','altitud','accion'];
   displayedColumnsSensor= ['nombre', 'modelo','accion'];
+  displayedColumnsDatalogger= ['nombre', 'modelo','accion'];
 
   dataSource = new MatTableDataSource();
   dataSourceSensor = new MatTableDataSource();
+  dataSourceDatalogger = new MatTableDataSource();
   acelerografos: Acelerografo [] =[];
   sensores: Sensor [] =[];
+  dataloggers: Datalogger [] =[];
   acelerografo:Acelerografo;
 
   constructor(
@@ -31,6 +34,7 @@ export class AcelerometrosComponent implements OnInit {
     ) {
       this.cargarSensores();
       this.cargarAcelerografo();
+      this.cargarDataloggers();
   }
 
 
@@ -86,6 +90,12 @@ export class AcelerometrosComponent implements OnInit {
       //   })
       //   console.log(acelerografo.sensor)
       // })
+    })
+  }
+  cargarDataloggers(){
+    this.acelerografoService.getDataloggers().subscribe(res=>{
+      this.dataSourceDatalogger.data = res
+      this.dataSourceDatalogger.sort = this.sort;
     })
   }
   openDialog(url){

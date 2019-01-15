@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse, HttpErrorResponse } from '@angular/common/http';
-import { Acelerografo, Sensor } from '../../clases/acelerografo';
+import { Acelerografo, Sensor, Datalogger } from '../../clases/acelerografo';
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
@@ -30,13 +30,18 @@ export class AcelerografoService {
   getSensores(): Observable<Sensor[]> {
     return this.http.get<Sensor[]>(this.sensorUrl, this.httpOptions);
   }
-  getSensor(url): Observable<Sensor[]> {
-    return this.http.get<Sensor[]>(url, this.httpOptions);
+  getDataloggers(): Observable<Datalogger[]> {
+    return this.http.get<Datalogger[]>(this.sensorUrl, this.httpOptions);
+  }
+  getSensor(url): Observable<Sensor> {
+    return this.http.get<Sensor>(url, this.httpOptions);
   }
   getAcelerografo(url): Observable<Acelerografo> {
     return this.http.get<Acelerografo>(url, this.httpOptions);
   }
-
+  getDatalogger(url): Observable<Datalogger> {
+    return this.http.get<Datalogger>(url, this.httpOptions);
+  }
   addSensor(sensor: Sensor) {
     this.http.post<Sensor>(this.sensorUrl, sensor, this.httpOptions).subscribe(res=>{
             console.log('guardado!')

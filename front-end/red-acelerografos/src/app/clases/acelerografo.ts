@@ -5,10 +5,19 @@ export interface Acelerografo {
   longitud:string,
   altitud:string,
   sensor:string,
-  tipo:string,
+  activo:boolean,
+  url:string,
 }
 export interface Sensor {
   id?:number,
   nombre:string,
   modelo:string,
+  url:string,
+}
+
+export interface Datalogger {
+  id?:number,
+  nombre:string,
+  modelo:string,
+  url:string,
 }

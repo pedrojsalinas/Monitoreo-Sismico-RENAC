@@ -33,7 +33,7 @@ class Acelerografo(models.Model):
     latitud = models.DecimalField(max_digits=9, decimal_places=6)
     sensor = models.ForeignKey(Sensor, on_delete=models.CASCADE)
     altitud = models.FloatField()
-    tipo = models.CharField(max_length=100)
+    activo = models.BooleanField(default=True)
     def __str__(self):
         return self.nombre
 
