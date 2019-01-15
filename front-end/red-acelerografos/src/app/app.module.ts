@@ -17,9 +17,8 @@ import { AgmCoreModule } from '@agm/core';
 import { LoginComponent } from './ui/login/login.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 
-import {
-  MatDialogModule,
-} from '@angular/material';
+import { MatDialogModule, } from '@angular/material';
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,

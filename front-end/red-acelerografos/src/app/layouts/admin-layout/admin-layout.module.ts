@@ -11,7 +11,9 @@ import { AcelerometrosComponent } from '../../admin/acelerometros/acelerometros.
 import { AddSensorComponent } from '../../admin/dialog/add-sensor/add-sensor.component';
 import { AddAcelerografoComponent } from '../../admin/dialog/add-acelerografo/add-acelerografo.component';
 import { EditAcelerografoComponent } from '../../admin/dialog/edit-acelerografo/edit-acelerografo.component';
-
+import { EditSensorComponent } from '../../admin/dialog/edit-sensor/edit-sensor.component';
+import { AddDataloggerComponent } from '../../admin/dialog/add-datalogger/add-datalogger.component';
+import { EditDataloggerComponent } from '../../admin/dialog/edit-datalogger/edit-datalogger.component';
 
 import {
   MatButtonModule,
@@ -52,9 +54,20 @@ import {
     AcelerometrosComponent,
     AddSensorComponent,
     AddAcelerografoComponent,
-    EditAcelerografoComponent
+    EditAcelerografoComponent,
+    EditSensorComponent,
+    AddDataloggerComponent,
+    EditDataloggerComponent,
+  ],
+  entryComponents:[
+    EditarUsuarioComponent,
+    AddSensorComponent,
+    AddAcelerografoComponent,
+    EditAcelerografoComponent,
+    EditSensorComponent,
+    AddDataloggerComponent,
+    EditDataloggerComponent,
   ]
-  ,entryComponents:[EditarUsuarioComponent,AddSensorComponent,AddAcelerografoComponent,EditAcelerografoComponent]
 })
 
 export class AdminLayoutModule {}
