@@ -6,7 +6,7 @@ from rest_framework import serializers
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ('url', 'username', 'email', 'groups')
+        fields = ('url', 'username', 'email', 'groups', 'first_name','last_name')
 
 class GroupSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -31,13 +31,13 @@ class ParroquiaSerializer(serializers.HyperlinkedModelSerializer):
 class SensorSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Sensor
-        fields = ('id','nombre', 'modelo')
+        fields = ('id','nombre', 'modelo', 'url')
 
 
 class AcelerografoSerializer(serializers.HyperlinkedModelSerializer):
         class Meta:
             model = Acelerografo
-            fields = ('id','nombre','ubicacion', 'longitud','latitud','sensor','altitud','tipo')
+            fields = ('id','nombre','ubicacion', 'longitud','latitud','sensor','altitud','tipo','url')
 
 class SismoSerializer(serializers.HyperlinkedModelSerializer):
         class Meta:
