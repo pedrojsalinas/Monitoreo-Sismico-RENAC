@@ -16,17 +16,17 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class ProvinciaSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Provincia
-        fields = ('id','nombre', 'zona')
+        fields = ('url','nombre', 'zona')
 
 class CantonSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Canton
-        fields = ('id','nombre', 'provincia')
+        fields = ('url','nombre', 'provincia')
 
 class ParroquiaSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Parroquia
-        fields = ('id','nombre', 'canton')
+        fields = ('url','nombre', 'canton')
 
 class SensorSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
