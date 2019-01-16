@@ -11,6 +11,7 @@ import { catchError, retry } from 'rxjs/operators';
 export class AcelerografoService {
   acelerografoUrl = 'http://127.0.0.1:8000/acelerografos/';
   sensorUrl = 'http://127.0.0.1:8000/sensores/';
+  dataloggerUrl = 'http://127.0.0.1:8000/dataloggers/';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -31,7 +32,7 @@ export class AcelerografoService {
     return this.http.get<Sensor[]>(this.sensorUrl, this.httpOptions);
   }
   getDataloggers(): Observable<Datalogger[]> {
-    return this.http.get<Datalogger[]>(this.sensorUrl, this.httpOptions);
+    return this.http.get<Datalogger[]>(this.dataloggerUrl, this.httpOptions);
   }
   getSensor(url): Observable<Sensor> {
     return this.http.get<Sensor>(url, this.httpOptions);

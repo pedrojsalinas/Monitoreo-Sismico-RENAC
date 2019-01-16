@@ -37,7 +37,7 @@ class SensorSerializer(serializers.HyperlinkedModelSerializer):
 class AcelerografoSerializer(serializers.HyperlinkedModelSerializer):
         class Meta:
             model = Acelerografo
-            fields = ('id','nombre','ubicacion', 'longitud','latitud','sensor','altitud','tipo','url')
+            fields = ('id','nombre','ubicacion', 'longitud','latitud','sensor','altitud','activo','url')
 
 class SismoSerializer(serializers.HyperlinkedModelSerializer):
         class Meta:
@@ -48,7 +48,7 @@ class SismoSerializer(serializers.HyperlinkedModelSerializer):
 class DataloggerSerializer(serializers.HyperlinkedModelSerializer):
         class Meta:
             model = Datalogger
-            fields = ('id','nombre','modelo')
+            fields = ('id','nombre','modelo','url')
 
 class EstacionSerializer(serializers.HyperlinkedModelSerializer):
         class Meta:

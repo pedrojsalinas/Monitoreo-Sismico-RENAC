@@ -14,7 +14,7 @@ export class EditAcelerografoComponent implements OnInit {
   private url;
   acelerografoForm = this.fb.group({
     nombre: ['', Validators.required],
-    tipo: ['', Validators.required],
+    activo: ['', Validators.required],
     ubicacion: ['', Validators.required],
     latitud: ['', Validators.required],
     longitud: ['', Validators.required],
@@ -22,6 +22,7 @@ export class EditAcelerografoComponent implements OnInit {
     sensor: ['', Validators.required],
   });
     acelerografo: Acelerografo ;
+    sensores: Sensor [] =[];
 
   constructor(
     private dialogRef: MatDialogRef<EditAcelerografoComponent>,
@@ -35,12 +36,15 @@ export class EditAcelerografoComponent implements OnInit {
     this.url = this.data.url;
       this.acelerografoService.getAcelerografo(this.url).subscribe(res=>{
       this.acelerografoForm.get('nombre').setValue(res.nombre)
-      this.acelerografoForm.get('tipo').setValue(res.tipo)
+      this.acelerografoForm.get('activo').setValue(res.activo)
       this.acelerografoForm.get('ubicacion').setValue(res.ubicacion)
       this.acelerografoForm.get('latitud').setValue(res.latitud)
       this.acelerografoForm.get('longitud').setValue(res.longitud)
       this.acelerografoForm.get('altitud').setValue(res.altitud)
       this.acelerografoForm.get('sensor').setValue(res.sensor)
+    })
+    this.acelerografoService.getSensores().subscribe(res=>{
+      this.sensores = res
     })
   }
 

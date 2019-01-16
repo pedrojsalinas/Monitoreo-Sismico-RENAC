@@ -7,6 +7,8 @@ import { AddSensorComponent } from '../../admin/dialog/add-sensor/add-sensor.com
 import { AddAcelerografoComponent } from '../../admin/dialog/add-acelerografo/add-acelerografo.component';
 import { AcelerografoService } from '../../servicios/acelerografo/acelerografo.service';
 import { EditAcelerografoComponent } from '../dialog/edit-acelerografo/edit-acelerografo.component';
+import { EditSensorComponent } from '../dialog/edit-sensor/edit-sensor.component';
+import { EditDataloggerComponent } from '../dialog/edit-datalogger/edit-datalogger.component';
 
 @Component({
   selector: 'app-acelerometros',
@@ -16,7 +18,7 @@ import { EditAcelerografoComponent } from '../dialog/edit-acelerografo/edit-acel
 export class AcelerometrosComponent implements OnInit {
   @ViewChild(MatTable) table: MatTable<any>;
    @ViewChild(MatSort) sort: MatSort;
-  displayedColumns= ['nombre', 'ubicacion', 'latitud','longitud','altitud','accion'];
+  displayedColumns= ['nombre','sensor', 'ubicacion', 'latitud','longitud','altitud','activo','accion'];
   displayedColumnsSensor= ['nombre', 'modelo','accion'];
   displayedColumnsDatalogger= ['nombre', 'modelo','accion'];
 
@@ -81,15 +83,15 @@ export class AcelerometrosComponent implements OnInit {
   }
   cargarAcelerografo(){
     this.acelerografoService.getAcelerografos().subscribe(res=>{
-      this.dataSource.data = res
-      this.dataSource.sort = this.sort;
-      this.acelerografos = res
-      // res.forEach(acelerografo=>{
-      //   this.acelerografoService.getSensor(acelerografo.sensor).subscribe(data=>{
-      //
-      //   })
-      //   console.log(acelerografo.sensor)
-      // })
+
+      res.forEach(acelerografo=>{
+        this.acelerografoService.getSensor(acelerografo.sensor).subscribe(data=>{
+          acelerografo.sensor =  `${data.nombre} ${data.modelo}`
+        })
+        this.dataSource.data = res
+        this.dataSource.sort = this.sort;
+        this.acelerografos = res
+      })
     })
   }
   cargarDataloggers(){
@@ -106,6 +108,25 @@ export class AcelerometrosComponent implements OnInit {
       dialogRef.afterClosed().subscribe(result => {
         console.log(`Dialog result: ${result}`);
         this.cargarAcelerografo();
+      });
+  }
+  // EditSensorComponent
+  openDialogSensor(url){
+      const dialogRef = this.dialog.open(EditSensorComponent,{
+        data: { url: url },
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
+        this.cargarSensores();
+      });
+  }
+  openDialogDatalogger(url){
+      const dialogRef = this.dialog.open(EditDataloggerComponent,{
+        data: { url: url },
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
+        this.cargarDataloggers();
       });
   }
 }

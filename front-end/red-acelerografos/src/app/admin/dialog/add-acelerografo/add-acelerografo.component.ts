@@ -13,7 +13,7 @@ export class AddAcelerografoComponent implements OnInit {
 
   acelerografoForm = this.fb.group({
     nombre: ['', Validators.required],
-    tipo: ['', Validators.required],
+    activo: ['', Validators.required],
     ubicacion: ['', Validators.required],
     latitud: ['', Validators.required],
     longitud: ['', Validators.required],
