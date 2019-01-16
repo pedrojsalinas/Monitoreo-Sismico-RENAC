@@ -14,6 +14,7 @@ import { EditAcelerografoComponent } from '../../admin/dialog/edit-acelerografo/
 import { EditSensorComponent } from '../../admin/dialog/edit-sensor/edit-sensor.component';
 import { AddDataloggerComponent } from '../../admin/dialog/add-datalogger/add-datalogger.component';
 import { EditDataloggerComponent } from '../../admin/dialog/edit-datalogger/edit-datalogger.component';
+import { EstacionesComponent } from '../../admin/estaciones/estaciones.component';
 
 import {
   MatButtonModule,
@@ -27,6 +28,7 @@ import {
   MatDialogModule,
   MatTabsModule,
   MatCheckboxModule,
+  MatCardModule,
 } from '@angular/material';
 @NgModule({
   imports: [
@@ -45,6 +47,7 @@ import {
     MatDialogModule,
     MatTabsModule,
     MatCheckboxModule,
+    MatCardModule,
   ],
   declarations: [
     DashboardComponent,
@@ -58,6 +61,7 @@ import {
     EditSensorComponent,
     AddDataloggerComponent,
     EditDataloggerComponent,
+    EstacionesComponent,
   ],
   entryComponents:[
     EditarUsuarioComponent,
