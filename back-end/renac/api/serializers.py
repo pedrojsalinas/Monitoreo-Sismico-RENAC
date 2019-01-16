@@ -53,7 +53,7 @@ class DataloggerSerializer(serializers.HyperlinkedModelSerializer):
 class EstacionSerializer(serializers.HyperlinkedModelSerializer):
         class Meta:
             model = Estacion
-            fields = ('url','nombre' ,'longitud' ,'latitud' ,'ubicacion' ,'parroquia' ,'red' ,'acelerografo' ,'datalogger' ,'usuario')
+            fields = ('id','nombre' ,'longitud' ,'latitud' ,'ubicacion' ,'parroquia' ,'red' ,'acelerografo' ,'datalogger' ,'usuario')
 
 class AceleracionSerializer(serializers.HyperlinkedModelSerializer):
         class Meta:
