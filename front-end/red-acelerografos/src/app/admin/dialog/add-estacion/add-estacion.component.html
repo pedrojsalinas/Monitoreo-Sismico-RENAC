@@ -1,0 +1,47 @@
+<mat-dialog-content >
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Agregar Estación</mat-card-title>
+      <mat-card-subtitle>Complete los datos</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="estacionForm">
+        <div class="row">
+          <div class="col-md-4">
+            <mat-form-field>
+              <mat-select placeholder="Provincia" formControlName="provincia">
+                <mat-option *ngFor="let provincia of provincias" [value]="provincia.url" (onSelectionChange)="setCantones($event, provincia.url)">
+                  {{provincia.nombre}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-4">
+            <mat-form-field>
+              <mat-select placeholder="Canton" formControlName="canton">
+                <mat-option *ngFor="let canton of cantones" [value]="canton.url" >
+                  {{canton.nombre}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-4">
+            <mat-form-field>
+              <mat-select placeholder="Parroquia" formControlName="parroquia">
+                <mat-option *ngFor="let parroquia of parroquias" [value]="parroquia.url" >
+                  {{parroquia.nombre}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+        </div>
+        <mat-dialog-actions align="center">
+          <button mat-raised-button mat-dialog-close class="btn btn-danger">Cancelar</button>
+          <button mat-raised-button class="btn btn-primary" [disabled]='!estacionForm.valid' [mat-dialog-close]="true" (click)="onSubmit()">Actualizar estacion</button>
+        </mat-dialog-actions>
+      </form>
+    </mat-card-content>
+
+  </mat-card>
+</mat-dialog-content>
