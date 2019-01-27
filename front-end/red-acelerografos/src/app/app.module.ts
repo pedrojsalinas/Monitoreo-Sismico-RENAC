@@ -14,10 +14,11 @@ import { WebStorageModule } from 'ngx-store';
 import { UsuarioService } from './servicios/usuario/usuario.service';
 
 import { AgmCoreModule } from '@agm/core';
-import { LoginComponent } from './ui/login/login.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { UiComponent } from './ui/ui.component';
 
 import { MatDialogModule, } from '@angular/material';
+import { NavComponent } from './ui/nav/nav.component';
 
 @NgModule({
   imports: [
@@ -37,7 +38,8 @@ import { MatDialogModule, } from '@angular/material';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    LoginComponent,
+    UiComponent,
+    NavComponent,
   ],
   providers: [UsuarioService,],
   bootstrap: [AppComponent],
