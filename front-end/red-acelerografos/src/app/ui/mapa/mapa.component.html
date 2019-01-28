@@ -1,3 +1,42 @@
-<agm-map [latitude]="lat" [longitude]="lng">
-  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-</agm-map>
+<div class="row" *ngIf="acelerografos">
+  <div class="col-md-10">
+
+    <agm-map [latitude]="lat" [longitude]="lng">
+      <agm-marker *ngFor="let acelerografo of acelerografos" [latitude]="acelerografo.latitud" [longitude]="acelerografo.longitud" [iconUrl]="'http://cemos.cismid-uni.org/redacis/img/cismid.png'">
+        <agm-info-window>
+          <h4 class="text-center">{{acelerografo.nombre}}</h4>
+          <p><strong>Ubicación: </strong>{{acelerografo.ubicacion}}</p>
+          <p><strong>Altitud: </strong>{{acelerografo.altitud}}</p>
+          <button mat-stroked-button color="primary">Registros</button>
+        </agm-info-window>
+      </agm-marker>
+      <agm-marker [latitude]="lat" [longitude]="lng">
+        <agm-info-window>estas aqui</agm-info-window>
+      </agm-marker>
+    </agm-map>
+  </div>
+  <div class="col-md-2">
+    <h4>Red Nacional de Acelerógrafos</h4>
+    <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <input type="text" placeholder="Acelerografos" matInput [formControl]="myControl" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectAcelerografo($event)" [displayWith]="displayFn">
+          <mat-option *ngFor="let acelerografo of filteredAcelerografos | async" [value]="acelerografo">
+            {{acelerografo.nombre}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
+    <div class="card my-4">
+      <h5 class="card-header">Buscar</h5>
+      <div class="card-body">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Buscar...">
+          <span class="input-group-btn">
+            <button class="btn btn-secondary" type="button">Buscar</button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

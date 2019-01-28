@@ -1,8 +1,9 @@
 export interface Acelerografo {
+  id?:string,
   nombre:string,
   ubicacion:string,
-  latitud:string,
-  longitud:string,
+  latitud:any,
+  longitud:any,
   altitud:string,
   sensor:string,
   activo:boolean,

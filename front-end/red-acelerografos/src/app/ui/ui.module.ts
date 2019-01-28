@@ -5,8 +5,13 @@ import { UiRoutingModule } from './ui-routing.module';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MapaComponent } from './mapa/mapa.component';
-
-
+import { AgmCoreModule } from '@agm/core';
+import {
+  MatButtonModule,
+  MatAutocompleteModule,
+  MatFormFieldModule,
+  MatInputModule,
+} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -18,7 +23,12 @@ import { MapaComponent } from './mapa/mapa.component';
     CommonModule,
     UiRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AgmCoreModule,
+    MatButtonModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    MatInputModule,
   ]
 })
 export class UiModule { }
