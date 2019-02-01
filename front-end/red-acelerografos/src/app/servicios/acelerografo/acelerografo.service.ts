@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse, HttpErrorResponse } from '@angular/common/http';
-import { Acelerografo, Sensor, Datalogger } from '../../clases/acelerografo';
+import { Acelerografo, Sensor, Datalogger, Aceleracion } from '../../clases/acelerografo';
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
@@ -11,6 +11,7 @@ import { catchError, retry } from 'rxjs/operators';
 export class AcelerografoService {
   acelerografoUrl = 'http://127.0.0.1:8000/acelerografos/';
   sensorUrl = 'http://127.0.0.1:8000/sensores/';
+  aceleracionUrl = 'http://127.0.0.1:8000/acelerations/';
   dataloggerUrl = 'http://127.0.0.1:8000/dataloggers/';
   httpOptions = {
     headers: new HttpHeaders({
@@ -31,6 +32,9 @@ export class AcelerografoService {
   getSensores(): Observable<Sensor[]> {
     return this.http.get<Sensor[]>(this.sensorUrl, this.httpOptions);
   }
+  getAceleraciones(id): Observable<Aceleracion[]> {
+    return this.http.get<Aceleracion[]>(this.aceleracionUrl+id, this.httpOptions);
+  }
   getDataloggers(): Observable<Datalogger[]> {
     return this.http.get<Datalogger[]>(this.dataloggerUrl, this.httpOptions);
   }
@@ -39,6 +43,9 @@ export class AcelerografoService {
   }
   getAcelerografo(url): Observable<Acelerografo> {
     return this.http.get<Acelerografo>(url, this.httpOptions);
+  }
+  getAcelerografoById(id): Observable<Acelerografo> {
+    return this.http.get<Acelerografo>(this.acelerografoUrl+id, this.httpOptions);
   }
   getDatalogger(url): Observable<Datalogger> {
     return this.http.get<Datalogger>(url, this.httpOptions);

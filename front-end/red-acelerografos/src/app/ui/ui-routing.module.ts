@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { MapaComponent } from './mapa/mapa.component';
-import { AgmCoreModule } from '@agm/core';
+import { DetalleComponent } from './detalle/detalle.component';
+import { DetalleAceleracionComponent } from './detalle-aceleracion/detalle-aceleracion.component';
 
 const routes: Routes = [
   {
@@ -12,7 +13,15 @@ const routes: Routes = [
   {
     path: 'mapa',
     component: MapaComponent
-  }
+  },
+  {
+    path: 'detalle/:id',
+    component: DetalleComponent
+  },
+  {
+    path: 'aceleracion/:id',
+    component: DetalleAceleracionComponent
+  },
 ];
 
 @NgModule({

@@ -1,17 +1,14 @@
 <div class="row" *ngIf="acelerografos">
   <div class="col-md-10">
 
-    <agm-map [latitude]="lat" [longitude]="lng">
+    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="8" >
       <agm-marker *ngFor="let acelerografo of acelerografos" [latitude]="acelerografo.latitud" [longitude]="acelerografo.longitud" [iconUrl]="'http://cemos.cismid-uni.org/redacis/img/cismid.png'">
         <agm-info-window>
           <h4 class="text-center">{{acelerografo.nombre}}</h4>
           <p><strong>Ubicación: </strong>{{acelerografo.ubicacion}}</p>
           <p><strong>Altitud: </strong>{{acelerografo.altitud}}</p>
-          <button mat-stroked-button color="primary">Registros</button>
+          <button mat-stroked-button color="primary" (click)="registro(acelerografo)">Registros</button>
         </agm-info-window>
-      </agm-marker>
-      <agm-marker [latitude]="lat" [longitude]="lng">
-        <agm-info-window>estas aqui</agm-info-window>
       </agm-marker>
     </agm-map>
   </div>
@@ -27,15 +24,13 @@
         </mat-autocomplete>
       </mat-form-field>
     </form>
-    <div class="card my-4">
-      <h5 class="card-header">Buscar</h5>
+    <div class="card my-4" *ngIf="isAcelerografo">
+      <h5 class="card-header text-center">{{acelerografo.nombre}}</h5>
       <div class="card-body">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Buscar...">
-          <span class="input-group-btn">
-            <button class="btn btn-secondary" type="button">Buscar</button>
-          </span>
-        </div>
+        <p><strong>Ubicación: </strong>{{acelerografo.ubicacion}}</p>
+        <p><strong>Altitud: </strong>{{acelerografo.altitud}}</p>
+        <button mat-stroked-button color="primary" (click)="registro(acelerografo)">Registros</button>
+        <button mat-stroked-button color="primary">Mapa</button>
       </div>
     </div>
   </div>

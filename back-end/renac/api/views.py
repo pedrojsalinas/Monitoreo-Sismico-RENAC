@@ -7,6 +7,7 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
+from rest_framework import generics
 
 class CustomAuthToken(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
@@ -56,9 +57,6 @@ class AcelerografoViewSet(viewsets.ModelViewSet):
     queryset = Acelerografo.objects.all()
     serializer_class = AcelerografoSerializer
 
-class SismoViewSet(viewsets.ModelViewSet):
-    queryset = Sismo.objects.all()
-    serializer_class = SismoSerializer
 
 class DataloggerViewSet(viewsets.ModelViewSet):
     queryset = Datalogger.objects.all()
@@ -72,6 +70,16 @@ class AceleracionViewSet(viewsets.ModelViewSet):
     queryset = Aceleracion.objects.all()
     serializer_class = AceleracionSerializer
 
+class AceleracionesView(generics.ListAPIView):
+    serializer_class = AceleracionSerializer
+
+    def get_queryset(self):
+        """
+        This view should return a list of all the purchases for
+        the user as determined by the username portion of the URL.
+        """
+        id = self.kwargs['id']
+        return Aceleracion.objects.filter(acelerografo__id=id)
 class MaterialViewSet(viewsets.ModelViewSet):
     queryset = Material.objects.all()
     serializer_class = MaterialSerializer

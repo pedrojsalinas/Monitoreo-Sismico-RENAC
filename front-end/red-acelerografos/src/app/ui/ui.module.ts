@@ -6,18 +6,25 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MapaComponent } from './mapa/mapa.component';
 import { AgmCoreModule } from '@agm/core';
+import { DetalleComponent } from './detalle/detalle.component';
+import { DetalleAceleracionComponent } from './detalle-aceleracion/detalle-aceleracion.component';
+
 import {
   MatButtonModule,
   MatAutocompleteModule,
   MatFormFieldModule,
   MatInputModule,
+  MatTableModule,
+  MatPaginatorModule,
+  MatCardModule,
 } from '@angular/material';
 
 @NgModule({
   declarations: [
     LoginComponent,
     MapaComponent,
-    // NavComponent,
+    DetalleComponent,
+    DetalleAceleracionComponent,
   ],
   imports: [
     CommonModule,
@@ -29,6 +36,9 @@ import {
     MatAutocompleteModule,
     MatFormFieldModule,
     MatInputModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatCardModule,
   ]
 })
 export class UiModule { }

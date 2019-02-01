@@ -37,17 +37,7 @@ class Acelerografo(models.Model):
     def __str__(self):
         return self.nombre
 
-class Sismo(models.Model):
-    fecha = models.DateField(auto_now=False)
-    hora = models.TimeField(auto_now=False)
-    ubicacion = models.CharField(max_length=100)
-    longitud = models.DecimalField(max_digits=9, decimal_places=6)
-    latitud = models.DecimalField(max_digits=9, decimal_places=6)
-    profundidad = models.FloatField()
-    magnitud = models.FloatField()
-    azimut = models.FloatField()
-    estado = models.CharField(max_length=45)
-    fase = models.IntegerField()
+
 
 class Datalogger(models.Model):
     nombre = models.CharField(max_length=45)
@@ -67,11 +57,10 @@ class Estacion(models.Model):
 class Aceleracion(models.Model):
     fecha = models.DateField(auto_now=False)
     hora = models.TimeField(auto_now=False)
-    compente = models.DecimalField(max_digits=9, decimal_places=6)
-    frecuencia = models.FloatField()
+    # compente = models.DecimalField(max_digits=9, decimal_places=6)
+    # frecuencia = models.FloatField()
     fichero = models.CharField(max_length=100)
     acelerografo = models.ForeignKey(Acelerografo, on_delete=models.CASCADE)
-    sismo = models.ForeignKey(Sismo, on_delete=models.CASCADE)
 
 class Material(models.Model):
     nombre = models.CharField(max_length=45)

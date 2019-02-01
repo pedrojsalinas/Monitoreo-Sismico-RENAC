@@ -5,6 +5,7 @@ import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 declare const google: any;
 
 interface Marker {
@@ -20,23 +21,26 @@ interface Marker {
 })
 export class MapaComponent implements OnInit {
   acelerografos: Acelerografo[] = [];
+  acelerografo: Acelerografo;
   myControl = new FormControl();
   options: string[];
+  public isAcelerografo: boolean = false;
   filteredAcelerografos: Observable<Acelerografo[]>;
 
   constructor(
     private acelerografoService: AcelerografoService,
+    private router: Router,
   ) {
     this.cargarAcelerografo()
   }
 
   ngOnInit() {
-    this.findMe()
+    // this.findMe()
 
   }
 
-  lat: number;
-  lng: number;
+  lat: number = -3.986384;
+  lng: number = -79.199769;
 
   cargarAcelerografo() {
     this.acelerografoService.getAcelerografos().subscribe(res => {
@@ -69,7 +73,10 @@ export class MapaComponent implements OnInit {
     }
   }
   selectAcelerografo(e: MatAutocompleteSelectedEvent) {
-    console.log(e.option.value)
+    this.isAcelerografo = true
+    this.acelerografo = e.option.value
+    this.lat = e.option.value.latitud;
+    this.lng = e.option.value.longitud;
   }
 
   // dataChanged(e) {
@@ -87,6 +94,8 @@ export class MapaComponent implements OnInit {
   displayFn(acelerografo?: Acelerografo): string | undefined {
     return acelerografo ? acelerografo.nombre : undefined
   }
-
+  registro(acelerografo) {
+    this.router.navigate(['/ui/detalle/'+acelerografo.id])
+  }
 
 }

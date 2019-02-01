@@ -22,3 +22,11 @@ export interface Datalogger {
   modelo:string,
   url:string,
 }
+
+export interface Aceleracion {
+  id?:number,
+  fecha:string,
+  hora:string,
+  fichero:string,
+  acelerografo?:string,
+}
