@@ -53,7 +53,7 @@ class EstacionSerializer(serializers.HyperlinkedModelSerializer):
 class AceleracionSerializer(serializers.HyperlinkedModelSerializer):
         class Meta:
             model = Aceleracion
-            fields = ('id','url','fecha','hora','fichero','acelerografo')
+            fields = ('id','url','fecha','hora','fichero','componente','frecuencia','acelerografo')
 
 
 class MaterialSerializer(serializers.HyperlinkedModelSerializer):

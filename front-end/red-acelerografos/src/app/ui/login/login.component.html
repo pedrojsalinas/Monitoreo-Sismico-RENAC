@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-4 mx-auto mt-3">
-    <div class="card">
+    <mat-card >
       <div class="card-header text-center">
         Login
       </div>
@@ -9,15 +9,19 @@
           <div class="form-group">
             <label for="exampleInputEmail1">Usuario</label>
             <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="username" placeholder="Ingrese su usuario">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">Contraseña</label>
             <input type="password" class="form-control" formControlName="password" placeholder="Ingrese su contraseña">
           </div>
-          <button type="submit" class="btn btn-primary " [disabled]='!loginForm.valid'>Aceptar</button>
+          
+          <mat-card-actions align="center">
+
+            <button type="submit" class="btn btn-primary " [disabled]='!loginForm.valid'>Aceptar</button>
+          </mat-card-actions>
         </form>
       </div>
-    </div>
+    </mat-card>
   </div>
 </div>

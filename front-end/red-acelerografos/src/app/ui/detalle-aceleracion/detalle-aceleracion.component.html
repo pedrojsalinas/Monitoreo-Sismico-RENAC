@@ -3,34 +3,31 @@
   <mat-card-content>
     <div class="row">
       <div class="col-md-6">
-        <mat-list>
-          <h3 mat-subheader>Acelerografo</h3>
-          <mat-list-item>
-            <mat-icon mat-list-icon>home</mat-icon>
-            <h4 mat-line>{{acelerografo?.nombre}}</h4>
-            <p mat-line> {{sensor?.nombre | titlecase }} {{sensor?.modelo | titlecase }} </p>
-          </mat-list-item>
-          <mat-divider></mat-divider>
-          <h3 mat-subheader class="mb-3">Detalles</h3>
-          <mat-list-item *ngIf="aceleracion">
-            <div class="row">
-              <div class="col-md-3">
-                <p><strong>Fecha:</strong></p>
-              </div>
-              <div class="col-md-9">
-                <p>{{aceleracion.fecha}}</p>
-              </div>
-              <div class="col-md-3">
-                <p><strong>Hora:</strong></p>
-              </div>
-              <div class="col-md-9">
-                <p>{{aceleracion.hora}}</p>
-              </div>
-            </div>
-
-          </mat-list-item>
-        </mat-list>
-
+        <h4 class="secondary">Detalles</h4>
+        <table class="table table-striped" *ngIf="aceleracion">
+          <tbody>
+            <tr>
+              <th scope="row">Sensor:</th>
+              <td>{{sensor?.nombre | titlecase }} {{sensor?.modelo | titlecase }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Fecha:</th>
+              <td>{{aceleracion.fecha}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Hora:</th>
+              <td>{{aceleracion.hora}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Componente:</th>
+              <td>{{aceleracion.componente}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Frecuencia:</th>
+              <td>{{aceleracion.frecuencia}}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
       <div class="col-md-6">
         <agm-map [latitude]="lat" [longitude]="lng" [zoom]="13" *ngIf="acelerografo">
