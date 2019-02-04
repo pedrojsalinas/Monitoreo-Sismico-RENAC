@@ -30,7 +30,7 @@
         </table>
       </div>
       <div class="col-md-6">
-        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="13" *ngIf="acelerografo">
+        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="15" *ngIf="acelerografo">
           <agm-marker [latitude]="lat" [longitude]="lng" [iconUrl]="'http://cemos.cismid-uni.org/redacis/img/cismid.png'">
             <agm-info-window>
               <h4 class="text-center">{{acelerografo.nombre}}</h4>
@@ -38,10 +38,18 @@
               <p><strong>Altitud: </strong>{{acelerografo.altitud}}</p>
             </agm-info-window>
           </agm-marker>
+          <agm-circle [latitude]="lat" [longitude]="lng"
+          [radius]="300"
+          [fillColor]="'red'"
+          [circleDraggable]="false"
+          [editable]="false">
+      </agm-circle>
         </agm-map>
       </div>
     </div>
-    <canvas *ngIf="chart" id="canvas" #myCanvas class="mt-5"></canvas>
-
+    <canvas *ngIf="chart; else elseBlock" id="canvas" #myCanvas class="mt-5"></canvas>
+    <ng-template #elseBlock>
+        <p>No hay aceleraciones disponibles.</p>
+    </ng-template>
   </mat-card-content>
 </mat-card>

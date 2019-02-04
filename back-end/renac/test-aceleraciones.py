@@ -14,8 +14,8 @@ f = open(settings.MEDIA_ROOT+"/aceleraciones/APED.txt", encoding = "ISO-8859-1")
 
 for line in f:
     if 'Esta' in line:
-        # estacion = line.split(":")[1].strip()
-        estacion = 'La Victoria'
+        estacion = line.split(":")[1].strip()
+        # estacion = 'La Victoria'
         acelerografo = Acelerografo.objects.get(nombre=estacion)
         acelerografo_id = acelerografo.id
 f.close()
@@ -44,5 +44,5 @@ os.makedirs(os.path.join(settings.MEDIA_ROOT, fichero))
 fichero_final = settings.MEDIA_ROOT+'/'+fichero+'/datos.txt'
 shutil.copy(settings.MEDIA_ROOT+"/aceleraciones/APED.txt", fichero_final)
 
-aceleracion =Aceleracion.objects.create(fecha =date,hora =t,compente =componente,frecuencia =frecuencia,fichero =fichero+'datos.txt',acelerografo_id=acelerografo_id)
+aceleracion =Aceleracion.objects.create(fecha =date,hora =t,componente =componente,frecuencia =frecuencia,fichero =fichero+'datos.txt',acelerografo_id=acelerografo_id)
 aceleracion.save()

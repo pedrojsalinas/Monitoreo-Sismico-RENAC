@@ -35,7 +35,7 @@ export class AddAcelerografoComponent implements OnInit {
   }
 
   onSubmit() {
-    // this.acelerografoService.addAcelerografo(this.acelerografoForm.value)
+    this.acelerografoService.addAcelerografo(this.acelerografoForm.value)
     console.log(this.acelerografoForm.value)
   }
 

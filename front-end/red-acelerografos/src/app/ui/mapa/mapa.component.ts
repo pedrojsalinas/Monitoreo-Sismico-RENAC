@@ -41,6 +41,7 @@ export class MapaComponent implements OnInit {
 
   lat: number = -3.986384;
   lng: number = -79.199769;
+  zoom: number = 8;
 
   cargarAcelerografo() {
     this.acelerografoService.getAcelerografos().subscribe(res => {
@@ -74,6 +75,7 @@ export class MapaComponent implements OnInit {
   }
   selectAcelerografo(e: MatAutocompleteSelectedEvent) {
     this.isAcelerografo = true
+    this.zoom=15
     this.acelerografo = e.option.value
     this.lat = e.option.value.latitud;
     this.lng = e.option.value.longitud;
