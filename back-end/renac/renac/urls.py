@@ -25,6 +25,7 @@ router.register(r'perfiles', views.PerfilViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('datos/', views.AceleracionesDatosView.as_view(), name='aceleraciones-datos'),
     url('^acelerations/(?P<id>.+)/$', views.AceleracionesView.as_view()),
     # url(r'^api-auth/', ObtainAuthToken.as_view()),
     url(r'^api-token-auth/', views.CustomAuthToken.as_view()),

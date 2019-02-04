@@ -56,9 +56,9 @@ class Estacion(models.Model):
 
 class Aceleracion(models.Model):
     fecha = models.DateField(auto_now=False)
-    hora = models.TimeField(auto_now=False)
-    # compente = models.DecimalField(max_digits=9, decimal_places=6)
-    # frecuencia = models.FloatField()
+    hora = models.CharField(max_length=15)
+    compente = models.CharField(max_length=5)
+    frecuencia = models.CharField(max_length=15)
     fichero = models.CharField(max_length=100)
     acelerografo = models.ForeignKey(Acelerografo, on_delete=models.CASCADE)
 

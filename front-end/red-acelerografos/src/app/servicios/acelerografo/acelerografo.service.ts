@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Acelerografo, Sensor, Datalogger, Aceleracion } from '../../clases/acelerografo';
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
@@ -12,12 +12,14 @@ export class AcelerografoService {
   acelerografoUrl = 'http://127.0.0.1:8000/acelerografos/';
   sensorUrl = 'http://127.0.0.1:8000/sensores/';
   aceleracionUrl = 'http://127.0.0.1:8000/acelerations/';
+  aceleracionesUrl = 'http://127.0.0.1:8000/aceleraciones/';
   dataloggerUrl = 'http://127.0.0.1:8000/dataloggers/';
+  datosUrl = 'http://127.0.0.1:8000/datos/';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
     })
-}
+  }
 
   constructor(
     private http: HttpClient,
@@ -33,7 +35,7 @@ export class AcelerografoService {
     return this.http.get<Sensor[]>(this.sensorUrl, this.httpOptions);
   }
   getAceleraciones(id): Observable<Aceleracion[]> {
-    return this.http.get<Aceleracion[]>(this.aceleracionUrl+id, this.httpOptions);
+    return this.http.get<Aceleracion[]>(this.aceleracionUrl + id, this.httpOptions);
   }
   getDataloggers(): Observable<Datalogger[]> {
     return this.http.get<Datalogger[]>(this.dataloggerUrl, this.httpOptions);
@@ -45,27 +47,36 @@ export class AcelerografoService {
     return this.http.get<Acelerografo>(url, this.httpOptions);
   }
   getAcelerografoById(id): Observable<Acelerografo> {
-    return this.http.get<Acelerografo>(this.acelerografoUrl+id, this.httpOptions);
+    return this.http.get<Acelerografo>(this.acelerografoUrl + id, this.httpOptions);
+  }
+  getAceleracionById(id): Observable<Aceleracion> {
+    return this.http.get<Aceleracion>(this.aceleracionesUrl + id, this.httpOptions);
   }
   getDatalogger(url): Observable<Datalogger> {
     return this.http.get<Datalogger>(url, this.httpOptions);
   }
+  getDatos(id) {
+    const params = new HttpParams()
+      .set('id', id)
+    return this.http.get(this.datosUrl, {params});
+  }
+
   addSensor(sensor: Sensor) {
-    this.http.post<Sensor>(this.sensorUrl, sensor, this.httpOptions).subscribe(res=>{
-            console.log('guardado!')
-      },error=>console.log(error)
+    this.http.post<Sensor>(this.sensorUrl, sensor, this.httpOptions).subscribe(res => {
+      console.log('guardado!')
+    }, error => console.log(error)
     )
   }
   addAcelerografo(acelerografo: Acelerografo) {
-    this.http.post<Acelerografo>(this.acelerografoUrl, acelerografo, this.httpOptions).subscribe(res=>{
-            console.log('guardado!')
-      },error=>console.log(error)
+    this.http.post<Acelerografo>(this.acelerografoUrl, acelerografo, this.httpOptions).subscribe(res => {
+      console.log('guardado!')
+    }, error => console.log(error)
     )
   }
   deleteSensor(url) {
-    return this.http.delete<Sensor>(url, this.httpOptions).subscribe(res=>{
-            console.log('eliminado!')
-      },error=>console.log(error)
+    return this.http.delete<Sensor>(url, this.httpOptions).subscribe(res => {
+      console.log('eliminado!')
+    }, error => console.log(error)
     )
   }
 

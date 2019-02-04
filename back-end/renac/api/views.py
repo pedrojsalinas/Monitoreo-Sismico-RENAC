@@ -1,3 +1,4 @@
+import os
 from django.shortcuts import render
 from rest_framework import viewsets
 from api.serializers import *
@@ -8,6 +9,10 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework import generics
+from django.http import HttpResponse
+from django.views import View
+from django.conf import settings
+import json
 
 class CustomAuthToken(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
@@ -74,12 +79,37 @@ class AceleracionesView(generics.ListAPIView):
     serializer_class = AceleracionSerializer
 
     def get_queryset(self):
-        """
-        This view should return a list of all the purchases for
-        the user as determined by the username portion of the URL.
-        """
         id = self.kwargs['id']
         return Aceleracion.objects.filter(acelerografo__id=id)
+
+class AceleracionesDatosView(View):
+    def get(self,request):
+        id = request.GET['id']
+        print('id: {}'.format(id))
+        aceleracion=Aceleracion.objects.get(pk=id)
+        fichero=aceleracion.fichero
+        print(aceleracion.fichero)
+        f = open(settings.MEDIA_ROOT+'/'+fichero, encoding = "ISO-8859-1")
+        count = len(f.readlines())
+        f.close()
+        datos=[]
+        f = open(settings.MEDIA_ROOT+'/'+fichero, encoding = "ISO-8859-1")
+        for i, line in enumerate(f):
+            if i in range(10,count):
+                for a in line.split():
+                    datos.append((a.replace(",", ".")))
+        f.close()
+        return HttpResponse(json.dumps(datos), content_type="application/json")
+
+    # def post(self, request):
+    #     form = AgresorForm(request.POST)
+    #     if form.is_valid():
+    #         form.save()
+    #         form = AgresorForm
+    #     agresores = Agresor.objects.all()
+    #     args = {'agresores': agresores,'form':form}
+    #     return render(request, self.template_name , args)
+
 class MaterialViewSet(viewsets.ModelViewSet):
     queryset = Material.objects.all()
     serializer_class = MaterialSerializer

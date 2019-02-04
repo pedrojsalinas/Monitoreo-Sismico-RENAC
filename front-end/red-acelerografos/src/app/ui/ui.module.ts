@@ -17,6 +17,8 @@ import {
   MatTableModule,
   MatPaginatorModule,
   MatCardModule,
+  MatListModule,
+  MatIconModule,
 } from '@angular/material';
 
 @NgModule({
@@ -39,6 +41,8 @@ import {
     MatPaginatorModule,
     MatTableModule,
     MatCardModule,
+    MatListModule,
+    MatIconModule,
   ]
 })
 export class UiModule { }

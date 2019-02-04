@@ -1,3 +1,50 @@
-<p>
-  detalle-aceleracion works!
-</p>
+<mat-card>
+  <h2 class="text-center mb-3">{{acelerografo?.nombre}}</h2>
+  <mat-card-content>
+    <div class="row">
+      <div class="col-md-6">
+        <mat-list>
+          <h3 mat-subheader>Acelerografo</h3>
+          <mat-list-item>
+            <mat-icon mat-list-icon>home</mat-icon>
+            <h4 mat-line>{{acelerografo?.nombre}}</h4>
+            <p mat-line> {{sensor?.nombre | titlecase }} {{sensor?.modelo | titlecase }} </p>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <h3 mat-subheader class="mb-3">Detalles</h3>
+          <mat-list-item *ngIf="aceleracion">
+            <div class="row">
+              <div class="col-md-3">
+                <p><strong>Fecha:</strong></p>
+              </div>
+              <div class="col-md-9">
+                <p>{{aceleracion.fecha}}</p>
+              </div>
+              <div class="col-md-3">
+                <p><strong>Hora:</strong></p>
+              </div>
+              <div class="col-md-9">
+                <p>{{aceleracion.hora}}</p>
+              </div>
+            </div>
+
+          </mat-list-item>
+        </mat-list>
+
+      </div>
+      <div class="col-md-6">
+        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="13" *ngIf="acelerografo">
+          <agm-marker [latitude]="lat" [longitude]="lng" [iconUrl]="'http://cemos.cismid-uni.org/redacis/img/cismid.png'">
+            <agm-info-window>
+              <h4 class="text-center">{{acelerografo.nombre}}</h4>
+              <p><strong>Ubicación: </strong>{{acelerografo.ubicacion}}</p>
+              <p><strong>Altitud: </strong>{{acelerografo.altitud}}</p>
+            </agm-info-window>
+          </agm-marker>
+        </agm-map>
+      </div>
+    </div>
+    <canvas *ngIf="chart" id="canvas" #myCanvas class="mt-5"></canvas>
+
+  </mat-card-content>
+</mat-card>
